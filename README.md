@@ -14,7 +14,7 @@ I love talk data and am constantly looking for ways to level up. I've only scrat
 
 ![Python Character Cleaning](https://user-images.githubusercontent.com/126277909/225412227-5cc7e17e-a264-4faf-b7a6-3c5f0543f18b.png)
 
--- In other instances, MySQL didn't import all of the rows. In this instance I manually formatted the Excel data with a custom function to easy copy and paste 50+ rows for manually inserting the data into the pre-existing tables. Might've been a roundabout way, but it worked for me and quickly got the results I needed.
+-- In other instances, MySQL didn't import all of the rows. In this instance I manually formatted the Excel data with a custom function to easily copy and paste 50+ rows to manually insert the data into the pre-existing tables. Might've been a roundabout way, but it worked for me and quickly got the results I needed.
 
 <img width="343" alt="Screen Shot 2023-03-15 at 1 49 20 PM" src="https://user-images.githubusercontent.com/126277909/225413054-8067a80d-a688-4884-b205-eba9ecb29ca6.png">
 
