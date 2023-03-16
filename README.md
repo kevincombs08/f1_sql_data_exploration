@@ -9,7 +9,7 @@ https://www.linkedin.com/in/senior-media-buyer-analyst/
 I love talk data and am constantly looking for ways to level up. I've only scratched the surface on Python & R and look forward to implementing in future projects. 
 
 # Project Progression
-# 3/15/23
+
 -- Started cleaning CSV files and there were some that needed more care than others. drivers.csv, results.csv, sprint_results.csv, races.csv, all needed care. For the most part I implemented functions, text to columns, etc within Excel to quickly organize before importing into MySQL. In one instance, I used a bit of Python to clean driver.csv data that imported special characters into the name. 
 
 ![Python Character Cleaning](https://user-images.githubusercontent.com/126277909/225412227-5cc7e17e-a264-4faf-b7a6-3c5f0543f18b.png)
