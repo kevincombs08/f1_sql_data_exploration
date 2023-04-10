@@ -1,7 +1,9 @@
--- First things first, I started importing the various data tables via MySQLs Wizard Table Import. Thankfully, for the sake of this project, some imports failed and allowed me to showcase ALTERING, UPDATING, CREATING, DROPPING tables/datatypes withing this project.
--- I started with the "races" table. It failed importing about 60 rows so I curated a custom function to make it easy to copy/paste from Excel straight into MySQL. This was a common theme for the table imports and the following queries feature me manipulating
--- the tables to show the full data range as well as cleaning NULL values found in the Excel file. The custom function is featured in the .README file. I limited some of the rows here, especially on the results table, just for space sake. I can 
--- provide full queries if interested. 
+-- First things first, I started importing the various data tables via MySQLs Wizard Table Import. Thankfully, for the sake of this project, 
+-- some imports failed and allowed me to showcase ALTERING, UPDATING, CREATING, DROPPING tables/datatypes withing this project.
+-- I started with the "races" table. It failed importing about 60 rows so I curated a custom function to make it easy to copy/paste from Excel 
+-- straight into MySQL. This was a common theme for the table imports and the following queries feature me manipulating the tables to show the full 
+-- data range as well as cleaning NULL values found in the Excel file. The custom function is featured in the .README file. I limited some of 
+-- the rows here, especially on the results table, just for space sake. I can provide full queries if interested. 
 
 INSERT INTO races(
 	raceId
@@ -65,7 +67,7 @@ INSERT INTO constructor_standings(
 	,raceId 
 	,constructorId 
 	,points 
-    ,position 
+    	,position 
 	,positionText 
 	,wins)
 VALUES
@@ -104,25 +106,25 @@ ALTER TABLE f1_wc.qualifying
 
 CREATE TABLE drivers(
 	driverId INT
-    ,driverRef TEXT
-    ,number TEXT
-    ,code TEXT
-    ,forename TEXT
-    ,surname TEXT
-    ,dob DATE
-    ,nationality TEXT
-    ,url TEXT);
+    	,driverRef TEXT
+    	,number TEXT
+    	,code TEXT
+    	,forename TEXT
+    	,surname TEXT
+    	,dob DATE
+    	,nationality TEXT
+    	,url TEXT);
     
 INSERT INTO drivers(
 	driverId
-    ,driverRef
-    ,number
-    ,code
-    ,forename
-    ,surname
-    ,dob
-    ,nationality
-    ,url)
+    	,driverRef
+    	,number
+    	,code
+    	,forename
+    	,surname
+    	,dob
+    	,nationality
+    	,url)
 VALUES
 	(1, 'hamilton', 44, 'HAM', 'Lewis', 'Hamilton', '1985-01-07', 'British', 'http://en.wikipedia.org/wiki/Lewis_Hamilton'),
 	(2, 'heidfeld', '\\N', 'HEI', 'Nick', 'Heidfeld', '1977-05-10', 'German', 'http://en.wikipedia.org/wiki/Nick_Heidfeld'),
@@ -149,25 +151,25 @@ UPDATE drivers
 
 CREATE TABLE circuits (
 	circuitId INT
-    ,circuitRef TEXT
-    ,name TEXT
-    ,location TEXT
-    ,country TEXT
-    ,lat FLOAT
-    ,lng FLOAT
-    ,alt TEXT
-    ,url TEXT);
+    	,circuitRef TEXT
+    	,name TEXT
+    	,location TEXT
+    	,country TEXT
+    	,lat FLOAT
+    	,lng FLOAT
+    	,alt TEXT
+    	,url TEXT);
 
 INSERT INTO circuits(
 	circuitId
-    ,circuitRef
-    ,name
-    ,location
-    ,country
-    ,lat
-    ,lng
-    ,alt
-    ,url)
+    	,circuitRef
+    	,name
+    	,location
+    	,country
+    	,lat
+    	,lng
+    	,alt
+    	,url)
 VALUES
 	(1, 'albert_park', 'Albert Park Grand Prix Circuit', 'Melbourne', 'Australia', -37.8497, 144.968, 10, 'http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit'),
 	(2, 'sepang', 'Sepang International Circuit', 'Kuala Lumpur', 'Malaysia', 2.76083, 101.738, 18, 'http://en.wikipedia.org/wiki/Sepang_International_Circuit'),
@@ -324,10 +326,10 @@ ALTER TABLE results
 
 SELECT 
 	CONCAT(d.forename," ",d.surname) as NAME
-    ,MAX(d.number) AS NUM
-    ,MAX(d.dob) AS DOB
-    ,MAX(d.nationality) AS NATIONALITY
-    ,SUM(re.points) AS 2022_POINTS
+    	,MAX(d.number) AS NUM
+    	,MAX(d.dob) AS DOB
+    	,MAX(d.nationality) AS NATIONALITY
+    	,SUM(re.points) AS 2022_POINTS
 FROM results AS re
 	LEFT JOIN drivers AS d
 		ON re.driverId = d.driverId
@@ -341,10 +343,10 @@ GROUP BY 1
 
 SELECT 
 	CONCAT(d.forename," ",d.surname) as NAME
-    ,MAX(d.number) AS NUM
-    ,MAX(d.dob) AS DOB
-    ,MAX(d.nationality) AS NATIONALITY
-    ,SUM(re.points) AS TOTAL_POINTS
+    	,MAX(d.number) AS NUM
+    	,MAX(d.dob) AS DOB
+    	,MAX(d.nationality) AS NATIONALITY
+    	,SUM(re.points) AS TOTAL_POINTS
 FROM results AS re
 	LEFT JOIN drivers AS d
 		ON re.driverId = d.driverId
@@ -355,10 +357,10 @@ GROUP BY 1
 
 SELECT 
 	CONCAT(d.forename," ",d.surname) as NAME
-    ,MAX(d.number) AS NUM
-    ,MAX(d.dob) AS DOB
-    ,MAX(d.nationality) AS NATIONALITY
-    ,SUM(re.laps) AS TOTAL_LAPS
+    	,MAX(d.number) AS NUM
+    	,MAX(d.dob) AS DOB
+    	,MAX(d.nationality) AS NATIONALITY
+    	,SUM(re.laps) AS TOTAL_LAPS
 FROM results AS re
 	LEFT JOIN drivers AS d
 		ON re.driverId = d.driverId
@@ -369,9 +371,9 @@ GROUP BY 1
 
 SELECT
 	c.name AS NAME
-    ,MAX(c.nationality) AS NATIONALITY
-    ,SUM(re.points) AS TOTAL_POINTS
-    ,SUM(re.laps) AS TOTAL_LAPS
+    	,MAX(c.nationality) AS NATIONALITY
+    	,SUM(re.points) AS TOTAL_POINTS
+    	,SUM(re.laps) AS TOTAL_LAPS
 FROM results AS re
 	LEFT JOIN constructors AS c
 		ON re.constructorId = c.constructorId
@@ -382,9 +384,9 @@ FROM results AS re
 
 SELECT
 	r.name AS NAME
-    ,MAX(c.location) AS LOCATION
-    ,MAX(c.country) AS COUNTRY
-    ,SUM(re.laps) TOTAL_LAPS
+    	,MAX(c.location) AS LOCATION
+    	,MAX(c.country) AS COUNTRY
+    	,SUM(re.laps) TOTAL_LAPS
 FROM results AS re
 	INNER JOIN races AS r
 		ON re.raceId = r.raceId
@@ -399,10 +401,10 @@ FROM results AS re
 
 SELECT
 	r.name AS NAME
-    ,MAX(c.location) AS LOCATION
-    ,MAX(c.country) AS COUNTRY
-    ,COALESCE(MIN(re.fastestLapTime), 'No Time Registered') AS FASTEST_LAP
-    ,COALESCE(MAX(re.fastestLapSpeed), 'No Speed Registered') FASTEST_MPH
+    	,MAX(c.location) AS LOCATION
+    	,MAX(c.country) AS COUNTRY
+    	,COALESCE(MIN(re.fastestLapTime), 'No Time Registered') AS FASTEST_LAP
+    	,COALESCE(MAX(re.fastestLapSpeed), 'No Speed Registered') FASTEST_MPH
 FROM results AS re
 	LEFT JOIN races AS r
 		ON re.raceId = r.raceId
@@ -415,12 +417,12 @@ FROM results AS re
 
 SELECT 
 	cs.constructorId
-    ,c.name
-    ,c.nationality
-    ,cs.raceId
-    ,cs.points
-    ,cs.position
-    ,cs.wins
+    	,c.name
+    	,c.nationality
+    	,cs.raceId
+    	,cs.points
+    	,cs.position
+    	,cs.wins
 FROM constructor_standings AS cs
 	INNER JOIN constructors AS c
 		ON cs.constructorId = c.constructorId
@@ -432,13 +434,13 @@ FROM constructor_standings AS cs
 WITH saudi_standings AS(
 SELECT 
 	re.constructorId AS CON_ID
-    ,c.name AS CON_NAME
-    ,re.driverId AS D_ID
-    ,re.grid AS GRID
-    ,re.position AS POS
-    ,re.positionText AS POS_TXT
-    ,re.points AS POINTS
-    ,st.status AS STATUS
+    	,c.name AS CON_NAME
+    	,re.driverId AS D_ID
+    	,re.grid AS GRID
+    	,re.position AS POS
+    	,re.positionText AS POS_TXT
+    	,re.points AS POINTS
+    	,st.status AS STATUS
 FROM results AS re
 	LEFT JOIN constructors AS c
 		ON c.constructorId = re.constructorId
@@ -446,13 +448,13 @@ FROM results AS re
 		ON re.statusId = st.statusId
 	WHERE raceId = '1075')
 SELECT
-    CON_NAME
-    ,CONCAT(d.forename, " ", d.surname) AS DRIVR
-    ,GRID
-    ,POS
-    ,POS_TXT
-    ,POINTS
-    ,STATUS
+    	CON_NAME
+    	,CONCAT(d.forename, " ", d.surname) AS DRIVR
+    	,GRID
+    	,POS
+    	,POS_TXT
+    	,POINTS
+    	,STATUS
 FROM saudi_standings AS ss
 	LEFT JOIN drivers AS d
 		ON ss.D_ID = d.driverId
@@ -463,13 +465,13 @@ FROM saudi_standings AS ss
 WITH saudi_standings AS(
 SELECT 
 	re.constructorId AS CON_ID
-    ,c.name AS CON_NAME
-    ,re.driverId AS D_ID
-    ,re.grid AS GRID
-    ,re.position AS POS
-    ,re.positionText AS POS_TXT
-    ,re.points AS POINTS
-    ,st.status AS STATUS
+    	,c.name AS CON_NAME
+    	,re.driverId AS D_ID
+    	,re.grid AS GRID
+    	,re.position AS POS
+    	,re.positionText AS POS_TXT
+    	,re.points AS POINTS
+    	,st.status AS STATUS
 FROM results AS re
 	LEFT JOIN constructors AS c
 		ON c.constructorId = re.constructorId
@@ -479,20 +481,20 @@ FROM results AS re
 ,
 	saudi_standings_complete AS(
 SELECT
-    CON_NAME
-    ,CONCAT(d.forename, " ", d.surname) AS DRIVR
-    ,GRID
-    ,POS
-    ,POS_TXT
-    ,POINTS
-    ,STATUS
+    	CON_NAME
+    	,CONCAT(d.forename, " ", d.surname) AS DRIVR
+    	,GRID
+    	,POS
+    	,POS_TXT
+    	,POINTS
+    	,STATUS
 FROM saudi_standings AS ss
 	LEFT JOIN drivers AS d
 		ON ss.D_ID = d.driverId
 	ORDER BY POINTS DESC)
 SELECT
 	CON_NAME
-    ,SUM(POINTS) POINTS_TOTAL
+    	,SUM(POINTS) POINTS_TOTAL
 FROM saudi_standings_complete
 	GROUP BY CON_NAME
     ORDER BY POINTS_TOTAL DESC; 
@@ -502,15 +504,15 @@ FROM saudi_standings_complete
 
 SELECT
 	re.driverId AS D_ID
-    ,re.raceId AS RACE_ID
-    ,MAX(r.name) AS RACE_NAME
-    ,MAX(CONCAT(d.forename, " ", d.surname)) AS NAME
-    ,MAX(nationality) AS NATIONALITY
-    ,ROUND(AVG(re.grid),0) AS START_AVG
-    ,ROUND(AVG(re.position),0) AS END_AVG
-    ,ROUND(AVG(re.points),0) AS POINTS_AVG
-    ,ROUND(AVG(re.grid - re.position),0) AS AVG_MOVE
-    ,CASE WHEN ROUND(AVG(re.position),0) IS NOT NULL THEN DENSE_RANK () 
+    	,re.raceId AS RACE_ID
+    	,MAX(r.name) AS RACE_NAME
+    	,MAX(CONCAT(d.forename, " ", d.surname)) AS NAME
+    	,MAX(nationality) AS NATIONALITY
+    	,ROUND(AVG(re.grid),0) AS START_AVG
+    	,ROUND(AVG(re.position),0) AS END_AVG
+    	,ROUND(AVG(re.points),0) AS POINTS_AVG
+    	,ROUND(AVG(re.grid - re.position),0) AS AVG_MOVE
+    	,CASE WHEN ROUND(AVG(re.position),0) IS NOT NULL THEN DENSE_RANK () 
 		OVER (PARTITION BY re.raceID, CASE WHEN ROUND(AVG(re.position),0) IS NULL THEN 1 ELSE 0 END 
 			ORDER BY ROUND(AVG(re.position),0)) ELSE NULL END AS RACE_ORDER
 FROM results AS re
@@ -527,15 +529,15 @@ FROM results AS re
     WITH overall_stats AS(
     SELECT
 	re.driverId AS D_ID
-    ,re.raceId AS RACE_ID
-    ,MAX(r.name) AS RACE_NAME
-    ,MAX(CONCAT(d.forename, " ", d.surname)) AS NAME
-    ,MAX(nationality) AS NATIONALITY
-    ,ROUND(AVG(re.grid),0) AS START_AVG
-    ,ROUND(AVG(re.position),0) AS END_AVG
-    ,ROUND(AVG(re.points),0) AS POINTS_AVG
-    ,ROUND(AVG(re.grid - re.position),0) AS AVG_MOVE
-    ,CASE WHEN ROUND(AVG(re.position),0) IS NOT NULL THEN DENSE_RANK () 
+    	,re.raceId AS RACE_ID
+    	,MAX(r.name) AS RACE_NAME
+    	,MAX(CONCAT(d.forename, " ", d.surname)) AS NAME
+    	,MAX(nationality) AS NATIONALITY
+    	,ROUND(AVG(re.grid),0) AS START_AVG
+    	,ROUND(AVG(re.position),0) AS END_AVG
+    	,ROUND(AVG(re.points),0) AS POINTS_AVG
+    	,ROUND(AVG(re.grid - re.position),0) AS AVG_MOVE
+    	,CASE WHEN ROUND(AVG(re.position),0) IS NOT NULL THEN DENSE_RANK () 
 		OVER (PARTITION BY re.raceID, CASE WHEN ROUND(AVG(re.position),0) IS NULL THEN 1 ELSE 0 END 
 			ORDER BY ROUND(AVG(re.position),0)) ELSE NULL END AS RACE_ORDER
 FROM results AS re
@@ -546,7 +548,7 @@ FROM results AS re
 	GROUP BY re.driverId, re.raceId
     ORDER BY re.raceId DESC, ROUND(AVG(re.points),0) DESC)
     SELECT
-		NAME
+	NAME
         ,NATIONALITY
         ,SUM(POINTS_AVG) AS TOTAL_POINTS
         ,ROUND(AVG(START_AVG),2) AS START
@@ -561,17 +563,17 @@ FROM results AS re
 SELECT 
 	re.raceId
 	,r.name AS RACE_NAME
-    ,CONCAT(d.forename, " ", d.surname) AS DRIVER
-    ,c.name AS CONSTRUCTOR
-    ,re.number AS DRIVER_NUM
-    ,re.grid AS START
-    ,re.positionText AS END_TXT
-    ,COALESCE(CASE WHEN re.position IS NOT NULL THEN DENSE_RANK() 
+    	,CONCAT(d.forename, " ", d.surname) AS DRIVER
+    	,c.name AS CONSTRUCTOR
+    	,re.number AS DRIVER_NUM
+    	,re.grid AS START
+    	,re.positionText AS END_TXT
+    	,COALESCE(CASE WHEN re.position IS NOT NULL THEN DENSE_RANK() 
 		OVER (PARTITION BY re.raceId, CASE WHEN re.position IS NULL THEN 1 ELSE 0 END
 			ORDER BY re.position) ELSE NULL END,'DNF') AS RACE_ORDER 
-    ,re.points AS POINTS
-    ,re.laps AS LAPS
-    ,s.status AS STATUS
+    	,re.points AS POINTS
+    	,re.laps AS LAPS
+    	,s.status AS STATUS
 FROM results AS re
 	LEFT JOIN races AS r
 		ON re.raceId = r.raceId
